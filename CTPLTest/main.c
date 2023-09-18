@@ -25,6 +25,8 @@ void counter_led(void) {
     __delay_cycles(200000);
 
     counter++;
+
+    postTask(counter_led); // Posts counter_led task to be executed
 }
 
 int _system_pre_init(void) {
@@ -45,8 +47,6 @@ int _system_pre_init(void) {
  */
 int main(void) {
     while (1) {
-        postTask(counter_led); // Posts counter_led task to be executed
-
         procTasks(); // Looks for tasks to be executed
     }
 
